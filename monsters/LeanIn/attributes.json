@@ -1,0 +1,6 @@
+{
+    "name" : "LeanIn",
+    "actions" : {
+            "leanin":["\\!lean"]
+    }
+} 

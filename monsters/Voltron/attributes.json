@@ -1,0 +1,6 @@
+{
+    "name" : "Voltron",
+    "actions" : {
+            "serve":["^[Vv]oltron serve"]
+    }
+} 

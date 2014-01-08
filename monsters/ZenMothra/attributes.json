@@ -1,0 +1,6 @@
+{
+    "name" : "Zen Mothra",
+    "actions" : {
+            "wisdom":["^[Zz]en [Mn]othra$"]
+    }
+} 

@@ -1,0 +1,10 @@
+{
+    "name" : "Moot",
+    "actions" : {
+            "moot":["\\!moot"],
+            "happening":["\\!happening"],
+            "dangerzone":["\\!dangerzone"],
+            "bird":["\\!bird"],
+            "hotdog":["\\!hotdog", "\\!candy"]
+    }
+} 

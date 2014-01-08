@@ -1,0 +1,6 @@
+{
+    "name" : "LOTR",
+    "actions" : {
+            "sauron":["\\!sauron"]
+    }
+} 

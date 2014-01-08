@@ -1,0 +1,7 @@
+{
+    "name" : "Godzilla",
+    "actions" : {
+        "appear":["^[Gg]odzilla$"],
+        "attack":["[Gg]odzilla [Aa]ttack!"]
+    }
+} 
