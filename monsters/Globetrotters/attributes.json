@@ -1,0 +1,7 @@
+{
+    "name" : "globetrotters",
+    "actions" : {
+        "globetrottin":["\\!globetrottin"],
+        "slamdunk":["\\!slamdunk"]
+    }
+} 
