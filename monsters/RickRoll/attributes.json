@@ -1,0 +1,6 @@
+{
+    "name" : "RickRoll",
+    "actions" : {
+            "rickroll":["\\!rickroll","\\!doge"]
+    }
+} 
