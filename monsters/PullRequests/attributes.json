@@ -1,0 +1,7 @@
+{
+    "name" : "PullRequests",
+    "actions" : {
+            "pull":["bot.+feature", "feature.+bot", "\\!pull"],
+            "meatpull":["meatspace.+feature", "feature.+meatspace", "\\!pull"]
+    }
+} 
