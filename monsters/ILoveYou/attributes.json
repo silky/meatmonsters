@@ -1,0 +1,6 @@
+{
+    "name" : "ILoveYou",
+    "actions" : {
+            "iloveyou":["\\!iloveyou"]
+    }
+} 
