@@ -1,0 +1,6 @@
+{
+    "name" : "GoToBed",
+    "actions" : {
+            "coppa":["\\!coppa"]
+    }
+} 
