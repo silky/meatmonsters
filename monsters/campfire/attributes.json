@@ -1,0 +1,6 @@
+{
+    "name" : "Fire",
+    "actions" : {
+            "fire":["\\!feu", "\\!invoquer"]
+    }
+} 

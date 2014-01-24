@@ -1,0 +1,6 @@
+{
+    "name" : "Sassbot",
+    "actions" : {
+            "sassy":["\\!sassy","\\!badass"]
+    }
+} 

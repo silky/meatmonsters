@@ -1,0 +1,7 @@
+{
+    "name" : "Noby",
+    "actions" : {
+            "bananas":["\\!bananas"],
+            "attack":["nobybro attack", "\\!peel"]
+    }
+} 
