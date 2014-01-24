@@ -1,0 +1,6 @@
+{
+    "name" : "High Five",
+    "actions" : {
+            "highfive":["\\!highfive"]
+    }
+} 
