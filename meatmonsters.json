@@ -1,4 +1,6 @@
-{
-    "key" : "api-key",
-    "address": "meatspace address"
-}
+[
+    {
+        "key" : "",
+        "address": ""
+    }
+]

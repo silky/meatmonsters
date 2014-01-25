@@ -7,8 +7,76 @@ import random
 import json
 import base64 
 import hashlib
+import threading
 from random import choice
 from socketIO_client import SocketIO
+import goslate
+
+def get_gif (filename):
+    """get a gif from the filesystem and base64 encode it"""
+
+    with open (filename, "rb") as image_file:
+        data =  base64.b64encode(image_file.read())
+        gif = "data:image/gif;base64," + data
+        return gif
+
+def get_txt (filename):
+    """create a collection from a text file"""
+
+class Babelfish(object):
+
+    def __init__(self, conf):
+        """initialize a MeatMonsters collection from a config file"""
+
+        self.config = conf
+        self.api_key = self.config["key"]
+        self.address = self.config["address"]
+        self.gif = get_gif("babelfish.gif")
+        self.gs = goslate.Goslate()
+        self.last_bot = time.time()
+        self.run()
+
+    def get_post (self, data):
+        """extract wanted information from meatspace post"""
+        post = {}
+        post["key"] = data["chat"]["key"]
+        post["message"] = data["chat"]["value"]["message"]
+        return post
+
+    def get_message (self, reply, image, fingerprint):
+        """given a reply string and an image, construct a response"""
+
+        message = {}
+        message ['apiKey'] = self.api_key
+        message ['message'] = reply
+        message ['fingerprint'] = fingerprint
+        message ['picture'] = image
+        return message
+
+    def send_message (self, reply, image, fingerprint):
+        """send a message to meatspace"""
+        SocketIO(self.address).emit('message', self.get_message(reply, image, fingerprint))
+
+    def on_message(self, *args):
+        """handles incoming messages from meatspace"""
+        post = self.get_post (args[0])
+        match = re.search(r'(!tr)-(\S+) (.+)', post['message'])
+        try:
+            if match:
+                duration = time.time() - self.last_bot
+                self.last_bot = time.time()
+                if (duration > 10):
+                    self.send_message(self.gs.translate(match.group(3), match.group(2)), self.gif, "babelfish")
+        except:
+            pass
+
+    def run (self):
+        """start the monsters!"""
+
+        with SocketIO(self.address) as socketIO_listen:
+            socketIO_listen.on('message', self.on_message)
+            socketIO_listen.wait()
+
 
 class Monster(object):
     """
@@ -74,12 +142,10 @@ class MeatMonsters(object):
     connecting them to meatspace and dispatching commands to them
     """
 
-    def __init__(self):
+    def __init__(self, config):
         """initialize a MeatMonsters collection from a config file"""
 
-        with open ('meatmonsters.json', 'r') as conf:
-            self.config = json.load(conf)
-
+        self.config = config
         self.api_key = self.config["key"]
         self.address = self.config["address"]
         self.monsters_dir = "./monsters/"
@@ -90,7 +156,8 @@ class MeatMonsters(object):
         self.count = 0
         self.load_monsters()
         self.last_bot = time.time()
-
+        self.run()
+    
     def load_monsters(self):
         """load all monsters from monster subdirectory"""
 
@@ -126,17 +193,18 @@ class MeatMonsters(object):
 
     def on_message(self, *args):
         """handles incoming messages from meatspace"""
+        print self.get_post (args[0])
         self.count = self.count + 1
-        if self.count > 10:
+        if self.count > 1:
             post = self.get_post (args[0])
             for trigger, action in self.triggers.items():
                 if trigger.search(post['message']):
                     duration = time.time() - self.last_bot
                     self.last_bot = time.time()
-                    print duration
                     if (duration > 10):
                         values = self.monsters[action['monster']].action(action['action'])
-                        self.send_message(values["message"], values["picture"], values["fingerprint"])
+                        self.send_message(values["message"], 
+                                values["picture"], values["fingerprint"])
 
     def run (self):
         """start the monsters!"""
@@ -149,5 +217,13 @@ class MeatMonsters(object):
             socketIO_listen.wait()
 
 if __name__ == '__main__':
-    game = MeatMonsters()
-    game.run()
+    with open ('meatmonsters.json', 'r') as conf:
+        configs = json.load(conf)
+
+    for conf in configs:
+        print conf
+        monster = threading.Thread(target=MeatMonsters, args=(conf,))
+        monster.start()
+        babelfish = threading.Thread(target=Babelfish, args=(conf,))
+        babelfish.start()
+
