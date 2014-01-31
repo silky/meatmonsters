@@ -1,0 +1,6 @@
+{
+  "name": "Skyhook",
+  "actions": {
+    "skyhook":["\\!skyhook"]
+  }
+}

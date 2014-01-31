@@ -5,10 +5,9 @@
             "ninjas":["\\!ninjas"],
             "working":["\\!working"],
             "escape":["\\!escape"],
-            "skyhook":["\\!skyhook"],
             "standards":["\\!standards"],
             "zuul":["\\!help"],
             "excellent":["\\!excellent"],
             "saxman":["\\!saxytime"]
     }
-} 
+}
