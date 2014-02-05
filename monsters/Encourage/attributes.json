@@ -1,0 +1,6 @@
+{
+    "name" : "encouragement",
+    "actions" : {
+            "encourage":["\\!encouragement", "\\!encourage"]
+    }
+} 
