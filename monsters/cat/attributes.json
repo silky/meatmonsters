@@ -1,0 +1,6 @@
+{
+    "name" : "cat",
+    "actions" : {
+            "catout":["\\!catout"]
+    }
+}
