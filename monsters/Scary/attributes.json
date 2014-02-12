@@ -1,0 +1,6 @@
+{
+    "name" : "Scary",
+    "actions" : {
+            "you":["\\!you"]
+    }
+} 

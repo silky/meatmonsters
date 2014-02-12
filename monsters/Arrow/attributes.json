@@ -1,0 +1,6 @@
+{
+    "name" : "Point",
+    "actions" : {
+            "point":["\\!point"]
+    }
+} 
