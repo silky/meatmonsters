@@ -1,0 +1,6 @@
+{
+    "name" : "welcome",
+    "actions" : {
+            "welcome":["\\!welcome"]
+    }
+} 
