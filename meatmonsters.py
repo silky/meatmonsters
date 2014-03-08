@@ -148,7 +148,12 @@ class MeatMonsters(object):
         self.config = config
         self.api_key = self.config["key"]
         self.address = self.config["address"]
+        self.auth = self.config.get("auth")
         self.monsters_dir = "./monsters/"
+
+        self.headers = {}
+        if self.auth:
+            self.headers ["Authorization"] = "Basic {}".format(base64.b64encode(self.auth))
 
         self.debug = True
         self.monsters = {}
@@ -189,7 +194,7 @@ class MeatMonsters(object):
     def send_message (self, reply, image, fingerprint):
         """send a message to meatspace"""
 
-        SocketIO(self.address).emit('message', self.get_message(reply, image, fingerprint))
+        SocketIO(self.address, headers=self.headers).emit('message', self.get_message(reply, image, fingerprint))
 
     def on_message(self, *args):
         """handles incoming messages from meatspace"""
@@ -212,7 +217,7 @@ class MeatMonsters(object):
         if self.debug:
             print "Listening to %s" % self.address
 
-        with SocketIO(self.address) as socketIO_listen:
+        with SocketIO(self.address, headers=self.headers) as socketIO_listen:
             socketIO_listen.on('message', self.on_message)
             socketIO_listen.wait()
 
