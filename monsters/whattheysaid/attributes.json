@@ -1,0 +1,6 @@
+{
+    "name" : "whattheysaid",
+    "actions" : {
+            "whattheysaid":["\\!whathesaid", "\\!whatshesaid", "\\!whattheysaid"]
+    }
+} 
