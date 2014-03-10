@@ -1,0 +1,6 @@
+{
+    "name" : "RobotRollCall",
+    "actions" : {
+            "robotrollcall":["\\!rollcall"]
+    }
+} 
