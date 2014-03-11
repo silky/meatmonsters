@@ -1,0 +1,6 @@
+{
+    "name" : "Puke",
+    "actions" : {
+            "puke":["\\!puke"]
+    }
+} 
