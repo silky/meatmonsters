@@ -1,6 +1,6 @@
 {
-    "name" : “MyEmotions”,
+    "name" : "MyEmotions",
     "actions" : {
-            “myemotions”:[“\\!My”Emotions]
+            "myemotions":["\\!myemotions"]
     }
-} 
+}
